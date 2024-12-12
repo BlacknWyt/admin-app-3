@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Client</title>
+    <link type="text/css" rel="stylesheet" href="newClient.css">
+</head>
+<body>
+    <form>
+      <div id="formflex">
+        <div id="formhead">
+            <h2>New Client</h2>
+            <button type="button" id="addNewClient">Submit</button>
+        </div>
+        <div>
+            <label>Client Name:</label>
+            <input type="text" id="clientName" placeholder="John" value="">
+        </div>
+        <div>
+            <label>Client Surname:</label>
+            <input type="text" id="clientSurname" placeholder="Doe" value="">
+        </div>
+        <div>
+            <p><label>Client About:</label></p>
+            <textarea type="text" id="clientAbout" placeholder="Client grew up in...client enjoys..." value=""></textarea>
+        </div>
+        <div>
+            <p><label>Client Notes:</label></p>
+            <textarea type="text" id="clientNotes" value=""></textarea>
+        </div>
+      </div>
+    </form>
+</body>
+<script type="module" defer src="clientScript.js"></script>
+</html>

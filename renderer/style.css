@@ -1,0 +1,337 @@
+html{
+    height: 100%;
+    width: 100%;
+}
+body{
+    /* display: flex;
+    flex-direction: column; */
+    background-color: rgb(216, 237, 255);
+    margin: 0;
+    padding: 0;
+    /* overflow-y: hidden; */
+    height:inherit;
+    width: inherit;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+/* div{
+    align-items: center;
+} */
+
+#navbar:hover{
+    background: #FFF;
+    background-color: rgb(216, 237, 255);
+    box-shadow: 0 0px 10px 8px rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid gray;
+}
+#navbar{
+    transition: 1s;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    /* position: fixed; */
+    /* top: 0;
+    left: 0;
+    right: 0; */
+    height: 50px;
+    align-items: center;
+    justify-content: space-between;
+    /* padding-left: 10px;
+    padding-right: 10px; */
+    padding: 10px;
+    z-index: 1;
+}
+
+#menuButton{
+    background-color: white;
+    border: 1px solid black;
+    height: 50px
+}
+#menuButton:hover{
+    background-color: rgb(122, 122, 122);
+}
+
+#menu{
+    width: 30px;
+    height: 5px;
+    background-color: black;
+    margin: 4px;
+}
+.popBack{
+    height: 100%;
+    width: 100%; 
+    background-color: rgba(0, 0, 0, 0.2); 
+    position: absolute; 
+    z-index: 1;
+}
+.popShow{
+    /* pointer-events: none; */
+    position:absolute;
+    /* display: none; */
+    z-index: 2;
+    top: 70px;
+    left: 20px;
+    background-color: rgb(230, 242, 255);
+    border: 1px rgb(0, 0, 0) solid;
+    /* border-radius: 10px; */
+    width: 125px;
+    flex-direction: column;
+    padding: 10px;
+    transition: 1s;
+    box-shadow: 0 0 10px 10px rgb(0,0,0,0.5);
+}
+.popHide{
+    display: none;
+}
+#createClient, #addSesh, #editClient, #removeClient{
+    padding: 10px 0 10px 0;
+    width: inherit;
+    background: inherit;
+    border: none;
+}
+#createClient:hover, #addSesh:hover, #editClient:hover, #removeClient :hover{
+    background-color: rgb(161, 192, 214);
+}
+
+#addSesh2,#edit{
+    visibility: hidden;
+}
+
+#content{
+    display: flex;
+    /* flex:1; */
+    /* height: inherit; */
+    /* grid-template-columns: 2fr 5fr 3fr;
+    grid-column-end: -1;
+    grid-template-rows: auto ; */
+    /* grid-gap: 20px; */
+    
+    /* padding: 0 20px 0 20px; */
+    /* margin: 40px; */
+    /* min-width: 1100px; */
+    text-align: center;
+    /* align-content: stretch; */
+    /* margin: 0 30px; */
+}
+#content h2 u{
+    border-bottom: 2px solid black;
+    place-self: center;
+    width:fit-content;
+    text-align: center;
+}
+/*box-shadow: horizontal, vertical, blur, blur-grow, color, second shadow etc*/
+
+
+#content-div-left:hover{
+    /* animation: hover-left;
+    animation-fill-mode:forwards */
+    flex: 1 1 25%;
+    box-shadow: 0 0 10px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    
+}
+#content-div-left{
+    transition: 1s;
+    position: relative;
+    flex: 1 1 15%;
+    flex-direction: column;
+    text-align: center;
+    min-width: 120px;
+    padding: 20px;
+    /* min-height: 400px; */
+    /* height: 80vh; */
+    /* border-right: 1px black solid; */
+    background-color: rgb(216, 237, 255);
+    /* border-radius: 30px; */
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin: 0 10px;
+    /* box-shadow: 0 0 10px 6px rgba(0, 0, 0, 0.3); */
+}
+#content-div-center:hover{
+    flex: 1 1 90%;;
+    box-shadow: 0 0 10px 7px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+}
+
+/* #content-div-left:has(~ #content-div-center:hover){
+    box-shadow: none;
+} */
+
+#content-div-center{
+    transition: 1s;
+    position: relative;
+    flex: 1 1 65%;
+    /* flex-grow: 1; */
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    min-width: 450px;
+    /* height: 80vh; */
+    /* border: 5px black solid; */
+    background-color: rgb(247, 251, 255);
+    /* border-radius: 30px; */
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin: 0 10px;
+    /* box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3); */
+}
+@media (max-width: 1000px) {
+    #content-div-right {
+      display: none;
+    }
+  }
+
+#content-div-right:hover{
+    flex: 1 1 30%;
+    box-shadow: 0 0 10px 7px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+}
+#content-div-right{
+    transition: 1s;
+    position: relative;
+    margin: 0 10px;
+    flex: 1 1 20%;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    /* min-height: 600px; */
+    /* height: 80vh; */
+    /* border: 5px black solid; */
+    background-color: rgb(255, 255, 255);
+    /* border-radius: 30px; */
+    overflow-x: hidden;
+    overflow-y: hidden;
+    /* box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3); */
+}
+/* #listClientView{
+    overflow-wrap: break-word;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    list-style: none;
+} */
+
+
+.button-content button{
+    background: inherit;
+    /* background-color: rgb(205, 231, 255); */
+    width: 100%;
+    border: none;
+    padding: 2px;
+    margin: 2px;
+    transition: 1s;
+}
+.button-content button:hover{
+background-color: rgb(155, 177, 197);
+    /* background-color: rgb(205, 231, 255); */
+    width: 100%;
+    border-radius: 10px;
+    padding: 2px;
+    margin: 2px;
+}
+.btnFocus{
+    background-color: rgb(133, 151, 168) !important;
+}
+
+
+.content-scrollable > ul{
+    padding: 0;
+    margin: 0;
+    height: calc(100vh - 200px);
+}
+.content-scrollable{
+    /* display: flex; */
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.content-scrollable::-webkit-scrollbar{
+    width: 5px;
+    
+}
+.content-scrollable::-webkit-scrollbar-thumb{
+    background-color: rgb(0, 0, 0);
+    border-radius: 100vw;
+    
+}
+.content-scrollable::-webkit-scrollbar-track{
+    background-color: none;
+    margin-block: 1px;
+    border-radius: 100vw;
+}
+.listViews{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    height: calc(100vh - 180px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+/**/
+#sessionClientView{
+    overflow-wrap: break-word;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    list-style: none;
+}
+
+#sessionClientView button{
+    background: inherit;
+    /* background-color: rgb(205, 231, 255); */
+    width: 150px;
+    border: none;
+    padding: 2px;
+    margin: 2px;
+}
+
+
+#sessionViews{
+    /* border-right: 1px black solid; */
+
+    padding: 0;
+    margin: 0;
+    display: flex;
+    height: calc(100vh - 180px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#sessionPage{
+    padding: 0 10px;
+    margin: 0;
+    display: block;
+    height: calc(100vh - 200px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.seshData{
+    white-space: pre-line; 
+    line-height: 1.2; 
+    /* min-height:200px; */
+}
+#sessionPage:focus{
+    border: 1px solid black;
+    outline: none;
+}
+
+.center-scroll::-webkit-scrollbar{
+    width: 8px;
+    
+}
+.center-scroll::-webkit-scrollbar-thumb{
+    background-color: rgb(112, 112, 112);
+    border-radius: 100vw;
+    
+}
+.center-scroll::-webkit-scrollbar-track{
+    background-color: rgb(224, 224, 224);
+    margin-block: 20px;
+    border-radius: 100vw;
+}
+
+
+
+

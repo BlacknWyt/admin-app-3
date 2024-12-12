@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Client</title>
+    <link type="text/css" rel="stylesheet" href="newSession.css">
+</head>
+<body>
+    <form>
+      <div id="formflex">
+        <div id="formhead">
+            <h1>New Session</h1>
+            <button type="button" id="addNewSession">Submit</button>
+        </div>
+        <div>
+            <p><label>Client Name:</label></p>
+            <input type="text" id="clientName" placeholder="John">
+        </div>
+        <div>
+            <p><label>Client Surname:</label></p>
+            <input type="text" id="clientSurname" placeholder="Doe">
+        </div>
+        <div>
+            <p><label>Session:</label></p>
+            <input type="number" id="sessionNum" placeholder="1">
+        </div>
+        <div>
+            <p><label>Client Notes:</label></p>
+            <ul id="clientNotes">
+                <li><textarea type="text" id="note"></textarea></li>
+            </ul>
+            <button type="button" id="addPage">Add Page</button>
+        </div>
+      </div>
+    </form>
+    <script type="module" src="./sessionScript.js"></script>
+</body>
+</html>

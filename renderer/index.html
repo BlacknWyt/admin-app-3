@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'"/>
+    <title>Admin</title>
+    <link type="text/css" rel="stylesheet" href="style.css">
+    <link type="text/css" rel="stylesheet" href="confirm.css">
+</head>
+<body>
+    <div id="footer" style="background-color: inherit; height: 30px; width: 100%; position: absolute; bottom: 0; ">
+
+    </div>
+    <div id="popBack">
+        <div id="popUp" class="popHide">
+            <button id="createClient">Create client</button>
+            <button id="addSesh" class="newClientSession">New Session</button>
+            <button id="deleteClient">Remove client</button>
+        </div>
+    </div>
+    <div id="navbar">
+        <div>
+            <button id="menuButton">
+                <div id="menu"></div>
+                <div id="menu"></div>
+                <div id="menu"></div>
+            </button>
+        </div>
+        <div>
+            <label style="font-size: 20px; font-weight: bold;">Search Client : </label>
+            <input style="width: 300px; " type="text">
+        </div>
+        <div>
+            <button id="refresh">Refresh</button>
+        </div>
+    </div>
+    <div id="content">
+        <div id="content-div-left">
+            <div>
+                <h2><u>Clients</u></h2>
+            </div>
+            <div id="listViews" class="content-scrollable">
+                <ul id="listClientView" class="button-content">
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button style="background-color: blueviolet;">Session 1</Button></li>
+                </ul>
+            </div>
+        </div>
+        <div id="content-div-center">
+            <!-- <div>
+                <h2><u>About</u></h2>
+                <div >
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat quam cumque expedita voluptatum optio quod ea vel fugit atque modi maiores numquam blanditiis ut reprehenderit, tenetur sapiente alias, voluptate deleniti.
+                </div>
+            </div> -->
+            <div style="display: flex; flex-direction: column;">
+                <div style="display: flex; justify-content: center;">
+                    <button id="addSesh2" class="newClientSession">Add Session</button>
+                    <h2 id="clientName" style="margin: auto;"></h2>
+                    <button id="edit" >Edit</button>
+                </div>
+                <div id="prev" style="display: flex; flex-grow: 1; gap: 20px; padding-top: 10px; padding-bottom: 10px; text-align: center; align-content: stretch;">
+                    <div style="flex-direction: column;">
+                        <div id="sessionViews" class="center-scroll">
+                        <ul id="sessionClientView" class="button-content">
+                            <li><Button>Session 1</Button></li>
+                            <li><Button>Session 1</Button></li>
+                            <li><Button>Session 1</Button></li>
+                            <li><Button>Session 1</Button></li>
+                            <li><Button>Session 1</Button></li>
+                            <li><Button>Session 1</Button></li>
+                            <li><Button>Session 1</Button></li>
+                            <li><Button>Session 1</Button></li>
+                            <li><Button>Session 1</Button></li>
+                            <li><Button>Session 1</Button></li>
+                            <li><Button>Session 1</Button></li>
+                            <li><Button>Session 1</Button></li>
+                            <li><Button>Session 1</Button></li>
+                            <li><Button>Session 1</Button></li>
+                            <li><Button>Session 1</Button></li>
+                            <li><Button>Session 1</Button></li>
+                            <li><Button>Session 1</Button></li>
+                            <li><Button>Session 1</Button></li>
+                            <li><Button>Session 1</Button></li>
+                            <li><Button>Session 1</Button></li>
+                            <li><Button>Session 1</Button></li>
+                            <li><Button>Session 1</Button></li>
+                            <li><Button>Session 1</Button></li>
+                            <li><Button>Session 1</Button></li>
+                            <li><Button>Session 1</Button></li>
+                            <li><Button>Session 1</Button></li>
+                        </ul>
+                        </div>
+                    </div>
+                    <div id="sessionPage" style="text-align: left; flex-grow: 1; border-left: 1px solid black; align-content: stretch;" class="center-scroll">
+                        <p id="placeH" style="text-align: center;">Pick A client to view</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content-div-right">
+            <h2><u>Meetings</u></h2>
+            <div id="meetingViews" class="content-scrollable" >
+                <ul class="button-content">
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                    <li><Button>Session 1</Button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- <div id="confirm">
+        <div id="titleBar">
+            <p>title</p>
+            <button id="confirmClose">&times</button>
+        </div>
+        <div id="message">
+            <p> Are you sure to deletee</p>
+        </div>
+        <div id="close" >
+            <button id = 'buttonOk' onclick = "closeConfirm()"> Yes </button>
+            <button id = 'buttonCancel' onclick = "closeConfirm()"> No </button>
+        </div>
+     </div> -->
+
+    <!-- <script src="../script.js"></script> -->
+    <script type="module"  src="./indexScript.js"></script>
+</body>
+</html>
