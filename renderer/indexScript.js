@@ -2,13 +2,6 @@
 
 import { Confirm,Warn } from "./confirm.mjs";
 
-Warn.open({
-    title: 'err',
-    message: 'Please Enter the name and surname of the client you would like to delete:',
-    okText: 'Delete',
-    cancelText: 'Nevermind',
-    onok: function () {}
-})
 let getClient = document.getElementById("createClient");
 let createSession = document.getElementsByClassName("newClientSession");
 let deleteClient = document.getElementById("deleteClient");

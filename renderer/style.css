@@ -83,13 +83,13 @@ body{
 .popHide{
     display: none;
 }
-#createClient, #addSesh, #editClient, #removeClient{
+#createClient, #addSesh, #deleteClient{
     padding: 10px 0 10px 0;
     width: inherit;
     background: inherit;
     border: none;
 }
-#createClient:hover, #addSesh:hover, #editClient:hover, #removeClient :hover{
+#createClient:hover, #addSesh:hover, #deleteClient:hover{
     background-color: rgb(161, 192, 214);
 }
 
