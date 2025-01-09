@@ -3,21 +3,14 @@ html{
     width: 100%;
 }
 body{
-    /* display: flex;
-    flex-direction: column; */
     background-color: rgb(216, 237, 255);
     margin: 0;
     padding: 0;
-    /* overflow-y: hidden; */
     height:inherit;
     width: inherit;
     overflow-x: hidden;
     overflow-y: hidden;
 }
-/* div{
-    align-items: center;
-} */
-
 #navbar:hover{
     background: #FFF;
     background-color: rgb(216, 237, 255);
@@ -29,23 +22,82 @@ body{
     position: relative;
     display: flex;
     flex-direction: row;
-    /* position: fixed; */
-    /* top: 0;
-    left: 0;
-    right: 0; */
     height: 50px;
     align-items: center;
     justify-content: space-between;
-    /* padding-left: 10px;
-    padding-right: 10px; */
     padding: 10px;
     z-index: 1;
 }
 
+#search{
+    display: flex;
+    flex: 1 1 600px;
+    flex-direction: column;
+    height: 30px;
+    margin: 0;
+    padding: 0;
+    align-content: center;
+    max-width: 600px;
+}
+
+#searchBar:focus{
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+
+#searchBar{
+    border-radius: 30px; 
+    outline: none; 
+    border: none;
+    line-height: 30px; 
+    min-width: 300px;
+    padding: 5px 40px;
+    margin: -5px 50px;
+}
+#searchFill{
+    background-color: rgb(255, 255, 255); 
+    border-top: 1px solid black; 
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    visibility: hidden; 
+    margin: 0 50px;
+}
+#searchFill > ul{
+    list-style-type: none;
+    padding: 0 0 20px 0;
+    margin: 0 ;
+    width: 100%;
+}
+
+#searchFill > ul > li > button{
+    padding: 0 20px;
+    text-align: left;
+    height: 30px;
+    width: 100%;
+    border: none;
+    background-color: inherit;
+}
+#searchFill > ul > li > button:hover{
+    background-color: #d4d4d4;
+}
+/* #content-div-left:has(~ #content-div-center:hover){
+    background-color: rgb(64, 226, 43);
+} */
+/* #searchBar:focus ~ #searchFill{
+    visibility: visible;
+} */
+/* div > #searchBar:has(> #search){
+    background-color: rgb(64, 226, 43);
+} */
+
+
 #menuButton{
     background-color: white;
     border: 1px solid black;
-    height: 50px
+    height: 50px;
+    outline: none;
+
 }
 #menuButton:hover{
     background-color: rgb(122, 122, 122);
@@ -65,15 +117,12 @@ body{
     z-index: 1;
 }
 .popShow{
-    /* pointer-events: none; */
     position:absolute;
-    /* display: none; */
     z-index: 2;
     top: 70px;
     left: 20px;
     background-color: rgb(230, 242, 255);
     border: 1px rgb(0, 0, 0) solid;
-    /* border-radius: 10px; */
     width: 125px;
     flex-direction: column;
     padding: 10px;
@@ -83,13 +132,13 @@ body{
 .popHide{
     display: none;
 }
-#createClient, #addSesh, #deleteClient{
+.popupButtons{
     padding: 10px 0 10px 0;
     width: inherit;
     background: inherit;
     border: none;
 }
-#createClient:hover, #addSesh:hover, #deleteClient:hover{
+.popupButtons:hover{
     background-color: rgb(161, 192, 214);
 }
 
@@ -99,19 +148,7 @@ body{
 
 #content{
     display: flex;
-    /* flex:1; */
-    /* height: inherit; */
-    /* grid-template-columns: 2fr 5fr 3fr;
-    grid-column-end: -1;
-    grid-template-rows: auto ; */
-    /* grid-gap: 20px; */
-    
-    /* padding: 0 20px 0 20px; */
-    /* margin: 40px; */
-    /* min-width: 1100px; */
     text-align: center;
-    /* align-content: stretch; */
-    /* margin: 0 30px; */
 }
 #content h2 u{
     border-bottom: 2px solid black;
@@ -121,10 +158,7 @@ body{
 }
 /*box-shadow: horizontal, vertical, blur, blur-grow, color, second shadow etc*/
 
-
 #content-div-left:hover{
-    /* animation: hover-left;
-    animation-fill-mode:forwards */
     flex: 1 1 25%;
     box-shadow: 0 0 10px 8px rgba(0, 0, 0, 0.5);
     border-radius: 20px;
@@ -138,15 +172,10 @@ body{
     text-align: center;
     min-width: 120px;
     padding: 20px;
-    /* min-height: 400px; */
-    /* height: 80vh; */
-    /* border-right: 1px black solid; */
     background-color: rgb(216, 237, 255);
-    /* border-radius: 30px; */
     overflow-x: hidden;
     overflow-y: hidden;
     margin: 0 10px;
-    /* box-shadow: 0 0 10px 6px rgba(0, 0, 0, 0.3); */
 }
 #content-div-center:hover{
     flex: 1 1 90%;;
@@ -154,27 +183,18 @@ body{
     border-radius: 20px;
 }
 
-/* #content-div-left:has(~ #content-div-center:hover){
-    box-shadow: none;
-} */
-
 #content-div-center{
     transition: 1s;
     position: relative;
+    margin: 0 10px;
     flex: 1 1 65%;
-    /* flex-grow: 1; */
     flex-direction: column;
     text-align: center;
     padding: 20px;
     min-width: 450px;
-    /* height: 80vh; */
-    /* border: 5px black solid; */
     background-color: rgb(247, 251, 255);
-    /* border-radius: 30px; */
     overflow-x: hidden;
     overflow-y: hidden;
-    margin: 0 10px;
-    /* box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3); */
 }
 @media (max-width: 1000px) {
     #content-div-right {
@@ -195,27 +215,13 @@ body{
     flex-direction: column;
     text-align: center;
     padding: 20px;
-    /* min-height: 600px; */
-    /* height: 80vh; */
-    /* border: 5px black solid; */
     background-color: rgb(255, 255, 255);
-    /* border-radius: 30px; */
     overflow-x: hidden;
     overflow-y: hidden;
-    /* box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3); */
 }
-/* #listClientView{
-    overflow-wrap: break-word;
-    padding: 0;
-    margin: 0;
-    text-align: center;
-    list-style: none;
-} */
-
 
 .button-content button{
     background: inherit;
-    /* background-color: rgb(205, 231, 255); */
     width: 100%;
     border: none;
     padding: 2px;
@@ -224,7 +230,6 @@ body{
 }
 .button-content button:hover{
 background-color: rgb(155, 177, 197);
-    /* background-color: rgb(205, 231, 255); */
     width: 100%;
     border-radius: 10px;
     padding: 2px;
@@ -241,7 +246,6 @@ background-color: rgb(155, 177, 197);
     height: calc(100vh - 200px);
 }
 .content-scrollable{
-    /* display: flex; */
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -279,7 +283,6 @@ background-color: rgb(155, 177, 197);
 
 #sessionClientView button{
     background: inherit;
-    /* background-color: rgb(205, 231, 255); */
     width: 150px;
     border: none;
     padding: 2px;
@@ -288,8 +291,6 @@ background-color: rgb(155, 177, 197);
 
 
 #sessionViews{
-    /* border-right: 1px black solid; */
-
     padding: 0;
     margin: 0;
     display: flex;
@@ -310,7 +311,6 @@ background-color: rgb(155, 177, 197);
 .seshData{
     white-space: pre-line; 
     line-height: 1.2; 
-    /* min-height:200px; */
 }
 #sessionPage:focus{
     border: 1px solid black;
@@ -330,6 +330,88 @@ background-color: rgb(155, 177, 197);
     background-color: rgb(224, 224, 224);
     margin-block: 20px;
     border-radius: 100vw;
+}
+
+#emptySchedule{
+    display: none;
+}
+
+#scheduleView{
+    display: flex; 
+    flex-direction: column;
+    flex-grow: 1;  
+    list-style-type: none; 
+    margin: 0; 
+    padding: 0; 
+}
+.eventList{
+    position: relative;
+    top: 0;
+    bottom: 0;
+    padding: 0; 
+    height: 50px; 
+    width: 100%; 
+    align-content: center;
+}
+.eventExpand{
+    display: flex; 
+    justify-content: start; 
+    align-content: center; 
+    width: inherit; 
+    height: inherit; 
+    margin: 0; 
+    padding: 0;
+    border: none;
+    text-align: left;
+}
+.eventExpand > p{
+    flex-grow: 1;
+    padding: 0 10px;
+    margin: auto;
+}
+.eventColor{
+    padding: 10px; 
+    height: 8px; 
+    width: 8px; 
+    border-radius: 50px; 
+    margin: auto;
+}
+.eventDetails{
+    padding:0 10px; 
+    text-align: left;
+}
+.eventDetails > p{
+    margin: 0; 
+    padding: 5px;
+}
+
+.event-button-content button{
+    background: inherit;
+    width: 100%;
+    border: none;
+    transition: 1s;
+}
+.event-button-content button:hover{
+    background-color: rgb(155, 177, 197);
+    width: 100%;
+}
+
+.editEvent{
+    display: none;
+    background-color: rgb(212, 212, 212) !important;
+    border-radius: 50px;
+    width: 50px !important;
+    margin: auto 5px;
+}
+.editEvent:hover{
+    justify-self: end;
+    display: none;
+    background-color: rgb(100, 100, 100) !important;
+    border-radius: 50px;
+}
+
+.viewing{
+    background-color: rgb(133, 151, 168) !important;
 }
 
 

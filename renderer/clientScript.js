@@ -7,6 +7,7 @@ let clientSurname = document.getElementById("clientSurname");
 let clientAbout = document.getElementById("clientAbout");
 let clientNotes = document.getElementById("clientNotes");
 
+
 addNewClient.addEventListener("click", async (e) => {
     e.preventDefault();
     console.log("clicked")

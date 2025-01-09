@@ -1,28 +1,57 @@
 const { contextBridge, ipcRenderer } = require('electron')
-const path = require('path');
-const fs = require('node:fs');
 
-contextBridge.exposeInMainWorld('path', {
-    join: (...args) => path.join(...args)
+contextBridge.exposeInMainWorld('fs', {
+    readFile: (file)=> {
+        let res = ipcRenderer.invoke('fsRead', file)
+        return res;
+    }
 });
 
 //new client windows
-contextBridge.exposeInMainWorld('createClient',{
+contextBridge.exposeInMainWorld('makeNewClient',{
     addNewClient: () => {
         ipcRenderer.send("addNewClient");
     } 
 })
 
-contextBridge.exposeInMainWorld('deleteClient',{
-    delete: () => {
-        ipcRenderer.send("deleteClient");
+contextBridge.exposeInMainWorld('openSchedule',{
+    open: () => {
+        ipcRenderer.send("openSchedule");
+    } 
+})
+
+contextBridge.exposeInMainWorld('search',{
+    client: (data) => {
+        let res = ipcRenderer.invoke("search", data);
+        return res;
+    } 
+})
+
+contextBridge.exposeInMainWorld('delClient',{
+    delete: (data) => {
+        let res = ipcRenderer.invoke("delClient", data);
+        return res;
+    } 
+})
+
+contextBridge.exposeInMainWorld('delSession',{
+    delete: (data) => {
+        let res = ipcRenderer.invoke("delSession", data);
+        return res;
     } 
 })
 
 contextBridge.exposeInMainWorld('updateClient', {
     update: (data) => {
-        let res = ipcRenderer.invoke('updateClient',data);
-        console.log(res);
+        let res = ipcRenderer.invoke('updateClientSession',data);
+        // console.log(res);
+        return res;
+    }
+})
+contextBridge.exposeInMainWorld('updateEvent', {
+    update: (data) => {
+        let res = ipcRenderer.invoke('updateEvent',data);
+        // console.log(res);
         return res;
     }
 })
@@ -35,7 +64,7 @@ contextBridge.exposeInMainWorld('newSession',{
 
 contextBridge.exposeInMainWorld( 'electron',{
     getInput: (channel,func) => {ipcRenderer.once(channel,func);},
-    });
+});
 
 contextBridge.exposeInMainWorld("dbClient", {
     create: (data) => {
@@ -51,10 +80,32 @@ contextBridge.exposeInMainWorld('dbSession', {
     }
 })
 
+contextBridge.exposeInMainWorld('dbScheduler', {
+    create: (data) => {
+        let res = ipcRenderer.invoke('schedData', data);
+        console.log(data);
+        return res;
+    }
+})
+
 contextBridge.exposeInMainWorld('listClient',{
     clientView: () => {
         let data = ipcRenderer.invoke('getClientData');
         return data;
+    }
+})
+
+contextBridge.exposeInMainWorld('listEvents',{
+    eventsView: () => {
+        let data = ipcRenderer.invoke('getEvents');
+        return data;
+    }
+})
+
+contextBridge.exposeInMainWorld('checkEvents',{
+    exist: (data) => {
+        let res = ipcRenderer.invoke('checkEvents', data);
+        return res;
     }
 })
 

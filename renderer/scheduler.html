@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="scheduler.css">
+    <link rel="stylesheet" href="confirm.css">
+</head>
+<body>
+    <div id="schedule">
+       <div id="head">
+            <h2 id="Month">calender</h2>
+       </div> 
+       <div id="calendar-container" style="display:flex">
+        <div id="calendar" style="flex:1 1 70%">
+            <div id="days">
+                <h4>Monday</h4>
+                <h4>Tuesday</h4>
+                <h4>WednesDay</h4>
+                <h4>Thursday</h4>
+                <h4>Friday</h4>
+                <h4>Saterday</h4>
+                <h4>Sunday</h4>
+            </div>
+            <div id="dates">
+                <div class="day">
+                    <p>g</p>
+                    <ul class="eventCol">
+                        <li style="border-radius: 30px;  height: 10px; background-color: blueviolet;  margin: 2px 0;"></li>
+                        <li style="border-radius: 30px;   height: 10px; background-color: rgb(223, 192, 252);  margin: 2px 0;"></li>
+                        <li style="border-radius: 30px;  height: 10px; background-color: rgb(0, 247, 255);  margin: 2px 0;"></li>
+                        <li style="border-radius: 30px;   height: 10px; background-color: rgb(226, 43, 43);  margin: 2px 0;"></li>
+                        <li style="border-radius: 30px;  height: 10px; background-color: blueviolet;  margin: 2px 0;"></li>
+                        <li style="border-radius: 30px;  height: 10px; background-color: blueviolet;  margin: 2px 0;"></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="changeMonth">
+                <button id="prevMonth" class="changeMonth"><</button>
+                <button id="nextMonth" class="changeMonth">></button>
+            </div>
+       </div>
+       <div id="viewEvents">
+            <div id="closeEvents">
+                <h3 style="padding-left: 20px;">Events</h3>
+                <button type="button" id="closeEventsButton">&times</button>
+            </div>
+            <div id="eventViews" class="content-scrollable" style="align-content: center;">
+                <h2 id="emptySchedule">No events scheduled on this day</h2>
+                <ul class="event-button-content" id="scheduleView"></ul>
+            </div>
+       </div>
+       </div>
+    </div>
+</body>
+<script type="module" src="scheduler.js"></script>
+</html>

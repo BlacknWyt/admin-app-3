@@ -1,4 +1,4 @@
-import { Confirm, Alert } from "./confirm.mjs";
+import { Confirm, Warn } from "./confirm.mjs";
 //New Session
 
 let addPage = document.getElementById("addPage");
@@ -51,19 +51,19 @@ addNewSession.addEventListener("click", async() => {
         clientNotes: cNotes
     }
     
-    // if(clientName.value == ''|| clientSurname.value == ''|| clientSession.value == ''|| clientNotes.value == ''){
-    //     Confirm.open({
-    //         title: 'err',
-    //         message: 'You have left some boxes blank. Do you still wish to continue anyway?',
-    //         okText: 'Proceed',
-    //         cancelText: 'Cancel',
-    //         onok: function () {checkExistClient(client,data)},
-    //         oncancel: function () {return}
-    //     })
-    // }
-    // else{
-    //     checkExistClient(client,data)
-    // }
+    if(clientName.value == ''|| clientSurname.value == ''|| clientSession.value == ''|| clientNotes.value == ''){
+        Confirm.open({
+            title: 'err',
+            message: 'You have left some boxes blank. Do you still wish to continue anyway?',
+            okText: 'Proceed',
+            cancelText: 'Cancel',
+            onok: function () {checkExistClient(client,data)},
+            oncancel: function () {return}
+        })
+    }
+    else{
+        checkExistClient(client,data)
+    }
 })
 
 async function checkExistClient(client,data){

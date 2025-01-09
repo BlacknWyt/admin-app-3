@@ -59,7 +59,6 @@
     display: flex;
     justify-content: flex-end;
     gap: 10px;
-    background-color: rgb(222, 240, 255);
     /* text-align: right; */
     padding: 10px 20px 10px 20px;
 }
@@ -69,7 +68,7 @@
     animation-fill-mode: forwards;
 }
 .confirm--open{
-    -webkit-animation: confirm---open 2s;
+    -webkit-animation: confirm---open 1s;
     animation-fill-mode: forwards;
 }
 
@@ -82,4 +81,112 @@
 @keyframes confirm---open{
     from { opacity: 0;}
     to { opacity: 1;}
+}
+
+
+#saveSchedule{
+    display:flex; 
+    flex-direction: column; 
+    position:fixed; 
+    top: 20%; 
+    left: 40%;
+    background-color: rgb(255, 255, 255); 
+    padding: 20px;
+    /* min-width: 350px; */
+    border: 1px solid rgb(0, 0, 0);
+    box-shadow: 0 0px 20px 6px rgba(10,10,0,0.9);
+}
+
+#col{
+    padding: 0;
+    width: 150%;
+    height: 150%;
+    margin: -25%;
+    /* transform: scale(2.5); */
+}
+
+#colDiv{
+    transform: scale(0.6);
+    overflow: hidden;
+    width: 1.5em;
+    height: 1.5em;
+    /* optional formatting below here */
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 30px;
+    /* box-shadow: 1px 1px 3px 0px grey;
+    margin: 1em;    */
+}
+
+
+#scheduleTitleBar{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    height: 0;
+    color: white;
+    display: flex;
+    flex-grow: 1;
+    justify-content:space-between;
+    align-items: center;
+}
+#confirm_Close{
+    cursor: pointer;
+    background: none;
+    outline: none;
+    border: none;
+    /* transform: scale(2.5); */
+    /* height: 50%; */
+    font-size: 50px;
+    color: #160f0f;
+    margin: 0;
+    padding: 0;
+}
+
+.schedDiv{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin: 2px  ;
+    justify-content: center;
+}
+
+#saveSchedule > div > label{
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    justify-content: start;
+    padding: 10px 0;
+}
+.inp{
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    width: 200px; 
+    outline: none;
+}
+
+#saveSchedule > div > textarea{
+    width: 200px;
+    height: 150px;
+    margin: 0 0 20px 10px;
+    resize: none;
+    outline: none;
+}
+
+.saveCancel{
+    display: flex;
+    flex-grow: 1;
+    margin: 0 10px;
+    text-align: center;
+    justify-content: center;
+}
+
+.required:after { 
+    content:" *"; 
+    color: red;
+    padding: 0;
+    margin: 0;
+}
+
+#divButtons{
+    display: flex;
+    flex-direction: row;
 }

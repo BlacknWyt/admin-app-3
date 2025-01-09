@@ -1,0 +1,226 @@
+html{
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    height: inherit;
+    width: inherit;
+    overflow: hidden;
+}
+
+#calendar{
+    display: flex;
+    flex-direction: column;
+
+}
+
+#head{
+    display: flex;
+    /* text-align: center; */
+    background-color: rgb(216, 237, 255);
+    padding: 20px 0;
+    ;
+    
+}
+
+#head > h2{
+    flex-grow: 1;
+    /* align-content: center; */
+    margin: 0 20px;
+}
+
+#days{
+    position: sticky;
+    top: 0;
+    width: 770px;
+    display: flex;
+    color: #000000;
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+    background-color: white;
+
+}
+#days > h4{
+    /* overflow: hidden; */
+    width: 100px;
+    padding: 10px;
+}
+
+#changeMonth{
+    display: flex;
+    flex-grow: 1;
+    justify-content:center;
+    align-items: start;
+    margin: 0 20px;
+}
+
+
+#schedule{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#calendar-container{
+    display: flex;
+    height: 100%;
+}
+
+#dates{
+    width: 770px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+.day{
+    /* flex-grow: 1; */
+    width: 100px;
+    /* padding: 10px; */
+    height: 100px;
+    cursor: pointer;
+    box-sizing: border-box;
+    border: 2px solid ;
+    margin: 5px;
+    /* box-shadow: 0px 0px 3px #CBD4C2; */
+}
+
+.day > p{
+    margin: 0;
+    width: fit-content;
+}
+
+.eventCol{
+    list-style-type: none; 
+    margin: 0 4px; 
+    padding: 0;
+}
+.eventCol > li {
+    border-radius: 30px;  
+    height: 10px; 
+    margin: 2px 0;
+}
+
+#viewEvents{
+    display: flex;
+    flex: 1 1 30%;
+    flex-direction: column;
+    width: 100%;
+    border-left: 1px solid black;
+    min-width: 220px;
+    
+}
+
+#closeEvents{
+    display: flex;
+    justify-content:space-between;
+    align-content: center;
+    width: inherit;
+    margin: 0;
+    padding: 0;
+    /* border-top: 1px solid black;
+    border-bottom: 1px solid black; */
+
+}
+#closeEvents > button{
+    cursor: pointer;
+    background: none;
+    outline: none;
+    border: none;
+    width: fit-content;
+    font-size: 40px;
+    color: #160f0f;
+    
+}
+
+#emptySchedule{
+    display: none;
+}
+
+#scheduleView{
+    display: flex; 
+    flex-direction: column;
+    flex-grow: 1;  
+    list-style-type: none; 
+    margin: 0; 
+    padding: 0; 
+    /* overflow-y: scroll; */
+    /* overflow-x: hidden; */
+}
+.eventList{
+    position: relative;
+    top: 0;
+    bottom: 0;
+    padding: 0; 
+    height: 50px; 
+    width: 100%; 
+    align-content: center;
+}
+.eventExpand{
+    display: flex; 
+    justify-content: start; 
+    align-content: center; 
+    width: inherit; 
+    height: inherit; 
+    margin: 0; 
+    padding: 0;
+    border: none;
+    text-align: left;
+}
+.eventExpand > p{
+    flex-grow: 1;
+    padding: 0 10px;
+    margin: auto;
+}
+.eventColor{
+    /* background-color: aquamarine;  */
+    padding: 10px; 
+    height: 8px; 
+    width: 8px; 
+    border-radius: 50px; 
+    margin: auto;
+}
+.eventDetails{
+    padding:0 10px; 
+    /* background-color: aquamarine;  */
+    text-align: left;
+}
+.eventDetails > p{
+    margin: 0; 
+    padding: 5px;
+}
+
+.event-button-content button{
+    background: inherit;
+    /* background-color: rgb(205, 231, 255); */
+    width: 100%;
+    border: none;
+    transition: 1s;
+}
+.event-button-content button:hover{
+    background-color: rgb(155, 177, 197);
+    /* background-color: rgb(205, 231, 255); */
+    width: 100%;
+}
+
+.editEvent{
+    display: none;
+    background-color: rgb(212, 212, 212) !important;
+    border-radius: 50px;
+    width: 50px !important;
+    margin: auto 5px;
+}
+.editEvent:hover{
+    justify-self: end;
+    display: none;
+    background-color: rgb(100, 100, 100) !important;
+    border-radius: 50px;
+}
+
+.viewing{
+    background-color: rgb(133, 151, 168) !important;
+}

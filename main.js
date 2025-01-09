@@ -6,6 +6,12 @@ const PouchDB = require('pouchdb');
 PouchDB.plugin(require('pouchdb-find'));
 const cDB = new PouchDB("ClientDB");
 const csDB = new PouchDB("ClientSessionDB");
+const sDB = new PouchDB("scheduleDB");
+const fs = require('node:fs');
+const { Notification } = require('electron')
+
+const NOTIFICATION_TITLE = 'Basic Notification'
+const NOTIFICATION_BODY = 'Notification from the Main process'
 // cDB.destroy();
 // csDB.destroy();
 
@@ -17,7 +23,7 @@ let window = () => {
         title: 'Admin',
         width: isDev ? 1000 : 1000,
         minWidth: 700,
-        minHeight: 400,
+        minHeight: 500,
         height: 500,
         // alwaysOnTop: true,
         webPreferences: {
@@ -72,8 +78,25 @@ let  session = (data) => {
     newClientSession.once('ready-to-show', () => {
         newClientSession.webContents.send('getName', data);
         // console.log(data)
-      })
-   
+      })  
+}
+
+let schedule = () => {
+    const newSchedule = new BrowserWindow({
+        title: 'schedule',
+        width: 1200,
+        height: 900,
+        minWidth: 1040,
+        minHeight: 940,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: true,
+            preload: path.join(__dirname, 'preload.js'),
+        }
+    })
+    newSchedule.setMenuBarVisibility(false);
+
+    newSchedule.loadFile(path.join(__dirname, 'renderer/scheduler.html'));
 }
 
 app.whenReady().then(() => {
@@ -86,6 +109,13 @@ app.whenReady().then(() => {
     })
 });
 
+// app.whenReady().then(() => {
+//     new Notification({
+//         title: NOTIFICATION_TITLE,
+//         body: NOTIFICATION_BODY
+//       }).show()
+// });
+
 // app.isReady()
 ipcMain.on('addNewClient', () => {
     client();
@@ -95,12 +125,24 @@ ipcMain.on('addClientSession', (e, data) => {
     session(data);
 })
 
+ipcMain.on('openSchedule', () => {
+    schedule();
+})
+
 cDB.createIndex({
     index: {fields: ['name', 'surname']}
 });
 
 csDB.createIndex({
     index: {fields: ['name', 'surname']}
+});
+
+csDB.createIndex({
+    index: {fields: ['_id', '_rev']}
+});
+
+sDB.createIndex({
+    index: {fields: ['date']}
 });
 
 let data = [{
@@ -133,12 +175,20 @@ let data = [{
 }]
 // csDB.bulkDocs(data).then(()=>{console.log('done')}).catch()
 
+//gets all clients in clientDB
 ipcMain.handle('getClientData', async () => {
      let g = await cDB.find({selector:{name: {$gte: null }, surname:{$gte: null}}});
     //  await csDB.find({selector:{name: '2', surname:'2'}}).then(i => {console.log(i.docs)}).then()
     //  console.log(g.docs[0])
      return g.docs
     
+});
+
+ipcMain.handle('getEvents', async () => {
+    let g = await sDB.find({selector:{eventName: {$gte: null }, date:{$gte: null}}});
+   //  await csDB.find({selector:{name: '2', surname:'2'}}).then(i => {console.log(i.docs)}).then()
+    console.log(g.docs[0])
+    return g.docs
 });
 // cDB.info().then(i=>{console.log(i)}).catch()
 
@@ -163,9 +213,44 @@ ipcMain.handle('seshData', (req, data) => {
     });
     return res;
 })
-// csDB.allDocs({include_docs: true}).then((i) => {console.log(i.rows)})
 
-ipcMain.handle('updateClient', async(req, data) => {
+ipcMain.handle('schedData', async(req, data) => {
+    // console.log(data);
+    let res = await sDB.post(data)
+    .then(() => {
+        return {success: true}
+    }).catch(()=>{
+        return {success: false}
+    });
+
+    return res;
+});
+sDB.allDocs({include_docs: true}).then((i) => {console.log(i.rows)})
+
+ipcMain.handle('updateEvent', async(req, data) => {
+    console.log(data)
+    let res = await sDB.get(data._id).then(function(res) {
+        console.log();
+            return sDB.put({
+                _id: data._id,
+                _rev: data._rev,
+                eventName: data.eventName,
+                date: data.date,
+                from: data.from,
+                till: data.till,
+                note: data.note,
+                color: data.color,
+            });
+      }).then(function(response) {
+        // handle response
+      }).catch(function (err) {
+        console.log(err);
+      });
+
+      return 'hello';
+})
+
+ipcMain.handle('updateClientSession', async(req, data) => {
     let res = await csDB.get(data._id).then(function(res) {
         console.log();
             return csDB.put({
@@ -186,8 +271,13 @@ ipcMain.handle('updateClient', async(req, data) => {
       return res;
 })
 
+ipcMain.handle('checkEvents', async(req, data) => {
+    let exist = await sDB.find({selector :{date: data}}).then(i => {return i})
+    // console.log(exist.docs)
+    return exist.docs;
+})
+
 ipcMain.handle('clientExists', async(req, data) => {
-    console.log(data);
     let exist = await cDB.find({selector :{name:data.name, surname:data.surname}}).then(i => {return i}).then()
     // console.log(exist.docs)
     return exist;
@@ -198,6 +288,107 @@ ipcMain.handle('getSessions', async(req, data) => {
     // console.log(res.docs)
     return res.docs
 })
+
+ipcMain.handle('delClient', async(req, data) => {
+    let res = await cDB.find({selector : {name:data.name, surname:data.surname}}).then((doc) => {
+        if(doc.docs[0] == undefined) {
+            return -1
+        }
+        console.log(doc.docs[0])
+        let isClientRemoved = cDB.remove(doc.docs[0]).then((result) => {
+                console.log(result + 'then ran successfully')
+                return 1
+            }).catch((err) => {
+                console.log(err + ' catch ran for sum reason')
+                return 0 
+            });
+      return isClientRemoved;
+    })
+    .then(function (result) {
+            console.log(result)
+            return result
+      }).catch(function (err) {
+            console.log(err)
+            return 0 
+      });
+    await csDB.find({selector : {name:data.name, surname:data.surname}}).then((doc) => {
+        let m = [];
+        doc.docs.forEach((b) => {
+            let c = {_id:b._id, _rev:b._rev, _deleted: true}
+            m.push(c)
+        })
+        csDB.bulkDocs(m, (err, response) => {
+        if (err) {
+            return console.log(err);
+         } else {
+            console.log(response+"Documents deleted Successfully");
+         }
+        })
+        }).then(function (result) {
+            console.log(result)
+        }).catch(function (err) {
+        console.log(err);
+        });
+
+        return res;
+})
+
+ipcMain.handle('delSession', async(req, data) => {
+    let res = await csDB.find({selector : {_id:data._id, _rev:data._rev}}).then((doc) => {
+    let isSessionRemoved = csDB.remove(doc.docs[0]).then((result) => {
+            console.log(result)
+            return 1
+        }).catch((err) => {
+            console.log(err)
+            return 0 
+        });
+      return isSessionRemoved;
+    })
+    .then(function (result) {
+            console.log(result)
+            return result
+      }).catch(function (err) {
+            console.log(err)
+            return 0 
+      });
+      console.log(res)
+      return res
+    })
+
+ipcMain.handle('fsRead', (req, data) => {
+    let res = JSON.parse(fs.readFileSync(data))
+    return res
+
+})
+
+ipcMain.handle('search', async (req, data) => {
+    // console.log(data.name + ' ' + data.surname)
+    // let g = await cDB.find({selector:{name: {$gte: data.name }, surname:{$gte: data.surname}}})
+    // .then((res) => console.log(res.docs));
+
+    let clients = await cDB.query(myMapFunction, {
+        startkey     : data.name,
+        endkey       : data.name + "\ufff0",
+        limit        : 5,
+        include_docs : true
+    }).then((res) => {return res.rows})
+    
+    let clientNames = [];
+    for (let i = 0; i < clients.length; i++) {
+        let name = {
+            name: clients[i].doc.name,
+            surname: clients[i].doc.surname
+        }
+        clientNames.push(name);
+    }
+
+    
+    return clientNames;
+})
+
+function myMapFunction(doc) {
+        emit(doc.name);
+  }
 // csDB.get('16e53b6d-b78a-4fed-8916-a5fd391ca85d').then((doc)=>{console.log(doc.clientSurname)})
 // csDB.get(data._id).then(function(res) {
     // console.log(data);
@@ -230,6 +421,11 @@ app.on('window-all-closed', () => {
       app.quit()
     }
   })
+
+
+
+
+
 
 
 
